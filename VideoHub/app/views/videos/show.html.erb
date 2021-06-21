@@ -32,10 +32,27 @@
   <%= @video.description %>
 </p>
 
-<%= form_for @video.likes.build, url: video_likes_path(video_id: @video.id), remote: true do |f| %>
-  <%= f.hidden_field :user, value: current_user.id %>
-  <%= f.submit 'Like', class: 'like-submit' %>
-<% end %>
+<div class="unlike-div">
+  <%= form_with url:  destroy_like_url(video_id: @video.id), remote: true do |f| %>
+    <%= f.submit "Unlike", class: "unlike-submit" %>
+  <% end %>
+</div>
+<div class="like-div">
+  <%= form_for @video.likes.build, url: video_likes_path(video_id: @video.id), remote: true do |f| %>
+    <%= f.submit 'Like', class: 'like-submit' %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  <% if @liked %>
+    $(".like-div").hide();
+  <% else %>
+    $(".unlike-div").hide();
+  <% end %>
+  $(document).ready(function() {
+    $('.like-submit').css('color', 'orange');
+  });
+</script>
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>

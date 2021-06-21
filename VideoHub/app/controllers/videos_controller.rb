@@ -8,6 +8,7 @@ class VideosController < ApplicationController
 
   # GET /videos/1 or /videos/1.json
   def show
+    @liked = Like.exists?(user_id: current_user.id, video_id: params[:id])
   end
 
   # GET /videos/new

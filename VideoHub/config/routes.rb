@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # get 'likes/create'
-  # get 'likes/destroy'
+  post 'likes/:video_id/destroy', to: 'likes#destroy', as: "destroy_like"
   resources :videos do
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:create]
   end
   root to: 'pages#home'
   # root to: 'videos#new'
