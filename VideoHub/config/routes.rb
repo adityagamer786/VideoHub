@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :videos
+  # get 'likes/create'
+  # get 'likes/destroy'
+  resources :videos do
+    resources :likes, only: [:create, :destroy]
+  end
   root to: 'pages#home'
   # root to: 'videos#new'
   devise_for :users

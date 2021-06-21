@@ -32,6 +32,11 @@
   <%= @video.description %>
 </p>
 
+<%= form_for @video.likes.build, url: video_likes_path(video_id: @video.id), remote: true do |f| %>
+  <%= f.hidden_field :user, value: current_user.id %>
+  <%= f.submit 'Like', class: 'like-submit' %>
+<% end %>
+
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>
 
