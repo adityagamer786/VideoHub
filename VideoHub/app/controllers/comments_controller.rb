@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
   def create
     @video = Video.find(params[:video_id])
-    @comment = @video.comments.create(params[:comment].permit(:user_id, :body))
+    @comment = @video.comments.new(params[:comment].permit(:user_id, :body))
+    @comment.user_id = current_user.id
+    @comment.save
     redirect_to video_path(@video)
   end
 
