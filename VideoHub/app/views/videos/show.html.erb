@@ -31,6 +31,12 @@
   <strong>Description:</strong>
   <%= @video.description %>
 </p>
+<h2>
+  <%= @video.comments.count %> Comments
+</h2>
+<%= render @video.comments %>
+<h3>Add a Comment</h3>
+<%= render "comments/form" %>
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>

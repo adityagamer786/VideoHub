@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :videos
+  resources :videos do
+    resources :comments
+  end
   root to: 'pages#home'
   # root to: 'videos#new'
   devise_for :users

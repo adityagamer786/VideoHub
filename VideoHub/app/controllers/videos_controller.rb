@@ -22,7 +22,8 @@ class VideosController < ApplicationController
   # POST /videos or /videos.json
   def create
     @video = Video.new(video_params)
-    @video.user_id = current_user.id
+
+    @video = current_user.videos.build(params[:video])
 
     respond_to do |format|
       if @video.save
