@@ -27,6 +27,12 @@
   </p>
 </video>
 
+<div>
+  <%= link_to like_video_path(@video), class: "like-btn", method: :put, remote: :true %>
+  
+</div>
+
+
 <p>
   <strong>Description:</strong>
   <%= @video.description %>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :videos
+  resources :videos do
+    member do
+      put "like" => 'videos#vote'
+    end
+  end
   root to: 'pages#home'
   # root to: 'videos#new'
   devise_for :users

@@ -1,5 +1,7 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: [:new, :vote]
+  before_action :set_video, only: %i[ show edit update destroy vote]
+  respond_to :js, :json, :html
 
   # GET /videos or /videos.json
   def index
@@ -17,6 +19,14 @@ class VideosController < ApplicationController
 
   # GET /videos/1/edit
   def edit
+  end
+
+  def vote
+    if !current_user.liked? @video
+      @video.liked_by current_user
+    elsif currennt_user.liked? @video
+      @video.unliked_by current_user
+    end
   end
 
   # POST /videos or /videos.json
