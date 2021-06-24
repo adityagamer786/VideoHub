@@ -29,7 +29,7 @@
 <div>
   <%= link_to like_video_path(@video), class: "like-btn", method: :put, remote: :true do %>
     <div>
-      <span><p>Like</p></span>
+      <span>Like</span>
     </div>
   <% end %>
   <span class="likes-count"><%= @video.get_upvotes.size %> </span>
@@ -41,6 +41,7 @@
   <%= @video.description %>
 </p>
 
+<%= stylesheet_link_tag "public/stylesheets/video" %>
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>
 
