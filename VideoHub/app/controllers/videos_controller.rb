@@ -24,7 +24,7 @@ class VideosController < ApplicationController
   def vote
     if !current_user.liked? @video
       @video.liked_by current_user
-    elsif currennt_user.liked? @video
+    elsif current_user.liked? @video
       @video.unliked_by current_user
     end
   end
